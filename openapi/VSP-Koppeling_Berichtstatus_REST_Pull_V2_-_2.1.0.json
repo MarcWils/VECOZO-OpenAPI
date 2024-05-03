@@ -1,0 +1,269 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "VSP-Koppeling Berichtstatus REST Pull V2",
+    "description": "OpenAPI Koppelvlak specificatie voor het opvragen van de huidige berichtstatus. LET OP! Het is alleen mogelijk de webservice te benaderen indien er een certificaat wordt meegestuurd.",
+    "version": "2.1.0",
+    "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
+    "contact": {
+      "name": "VECOZO",
+      "url": "https://www.vecozo.nl",
+      "email": "support@vecozo.nl"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.vecozo.nl/berichtenservice/berichtstatus/rest-pull/v2",
+      "description": "Productie"
+    },
+    {
+      "url": "https://tst-api.vecozo.nl/acc/berichtenservice/berichtstatus/rest-pull/v2",
+      "description": "Acceptatie"
+    },
+    {
+      "url": "https://tst-api.vecozo.nl/tst/berichtenservice/berichtstatus/rest-pull/v2",
+      "description": "Test"
+    }
+  ],
+  "paths": {
+    "/berichtstatussen": {
+      "get": {
+        "tags": [
+          "Berichtstatus"
+        ],
+        "summary": "Zoek de berichtstatus van berichten op basis van Traceer ID of Conversatie ID. Gebruik 1 van de parameters.",
+        "operationId": "ZoekBerichtstatussen",
+        "parameters": [
+          {
+            "name": "traceerId",
+            "in": "query",
+            "description": "De berichtstatus van berichten met dit Traceer ID (als Traceer ID of AlsAntwoordOp) wordt teruggegeven.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "conversatieId",
+            "in": "query",
+            "description": "De berichtstatus van alle berichten onder de conversatie met dit Conversatie ID wordt teruggegeven.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BerichtstatusGegevens"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Berichtstatus": {
+        "enum": [
+          "Onbekend",
+          "Ontvangen",
+          "DeelsOntvangen",
+          "DeelberichtAanleveringAfgekeurd",
+          "WordtVerwerkt",
+          "AfgekeurdDoorDienst",
+          "VerwerkingVoltooid",
+          "Aangeboden",
+          "Bezorgd"
+        ],
+        "type": "string",
+        "description": "De status van een bericht."
+      },
+      "BerichtstatusGegevens": {
+        "required": [
+          "berichtOntvangenOp",
+          "berichtstatus",
+          "berichtstatusGewijzigdOp",
+          "berichtstroom",
+          "referentiegegevens"
+        ],
+        "type": "object",
+        "properties": {
+          "referentiegegevens": {
+            "$ref": "#/components/schemas/Referentiegegevens"
+          },
+          "berichtstroom": {
+            "$ref": "#/components/schemas/Berichtstroom"
+          },
+          "berichtstatus": {
+            "$ref": "#/components/schemas/Berichtstatus"
+          },
+          "berichtstatusGewijzigdOp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-08-18T16:58:44.0867+02:00"
+          },
+          "meldingen": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/Melding"
+            }
+          },
+          "berichtOntvangenOp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-08-18T16:58:44.0867+02:00"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Informatie behorende bij de status van een bericht."
+      },
+      "Berichtstroom": {
+        "required": [
+          "berichttype",
+          "berichtversie",
+          "berichtsubversie",
+          "actie"
+        ],
+        "type": "object",
+        "properties": {
+          "berichttype": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string"
+          },
+          "berichtsubtype": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string"
+          },
+          "berichtversie": {
+            "maximum": 999,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "berichtsubversie": {
+            "maximum": 999,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "actie": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Definieert een uitwisseling van gegevens in de vorm van berichten waarover specifieke afspraken gemaakt zijn."
+      },
+      "Referentiegegevens": {
+        "required": [
+          "conversatieId",
+          "traceerId"
+        ],
+        "type": "object",
+        "properties": {
+          "conversatieId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID om meerdere berichten logisch aan elkaar te koppelen in een conversatie."
+          },
+          "traceerId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Uniek ID voor dit bericht."
+          },
+          "alsAntwoordOp": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID om een bericht aan een bestaand bericht te kunnen koppelen. Verwijst naar het Traceer ID van een ander bericht."
+          },
+          "referentieId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150,
+            "description": "Referentie die opgegeven kan worden door de indienende ketenpartij."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Melding": {
+        "required": [
+          "code",
+          "omschrijving"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "omschrijving": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "toelichting": {
+            "minLength": 1,
+              "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "(Fout)melding bij een afgekeurd bericht."
+      },
+      "ValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "additionalProperties": {}
+      }
+    }
+  }
+}
