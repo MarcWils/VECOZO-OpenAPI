@@ -1,5 +1,5 @@
 {
-  "name": "acme-api",
+  "name": "vecozo-api",
   "version": "1.0.0",
   "dependencies": {
     "@redocly/cli": "1.12.0"
