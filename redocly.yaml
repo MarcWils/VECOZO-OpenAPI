@@ -2,9 +2,9 @@ apis:
   berichtstatusPull@v2: 
     root: openapi/VSP-Koppeling_Berichtstatus_REST_Pull_V2_-_2.1.0.json
   berichtuitwisselingPush@v1: 
-    root: openapi/VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0 .json
+    root: openapi/VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json
   berichtuitwisselingPull@v1: 
-    root: openapi/VSP-Koppeling_Berichtuitwisseling_REST_Pull_V1_-1.0.0.json
+    root: openapi/VSP-Koppeling_Berichtuitwisseling_REST_Pull_V1_-_1.0.0.json
 extends:
   - recommended
 rules:
