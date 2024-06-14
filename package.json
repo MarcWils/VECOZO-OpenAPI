@@ -1,8 +1,8 @@
 {
-  "name": "vecozo-api",
+  "name": "acme-api",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/cli": "1.15.0"
+    "@redocly/cli": "1.10.5"
   },
   "private": true,
   "scripts": {
