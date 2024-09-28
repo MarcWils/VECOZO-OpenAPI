@@ -6,7 +6,7 @@
     "description": "OpenAPI Koppelvlak specificatie t.b.v. het pushen van berichten. LET OP! Het is alleen mogelijk de API te benaderen indien er een geldig VECOZO systeemcertificaat wordt meegestuurd.",
     "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
     "contact": {
-      "name": "VECOZOs",
+      "name": "VECOZO",
       "url": "https://www.vecozo.nl",
       "email": "support@vecozo.nl"
     }
@@ -33,7 +33,6 @@
         ],
         "summary": "Verstuur een bericht naar de ontvanger.",
         "operationId": "PostBericht",
-
         "requestBody": {
           "description": "Bericht, bestaande uit metadata en payload.",
           "required": true,
