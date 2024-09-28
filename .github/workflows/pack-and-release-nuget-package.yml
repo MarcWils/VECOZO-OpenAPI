@@ -1,4 +1,4 @@
-name: Release NuGet package
+name: Pack & release NuGet package
 
 on:
   push:
@@ -19,6 +19,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore sdk\VecozoSdk.sln
+      run: dotnet restore ./sdk/VecozoSdk.sln --configuration Release 
     - name: Build
-      run: dotnet build sdk\VecozoSdk.sln --no-restore
+      run: dotnet build ./sdk/VecozoSdk.sln --configuration Release --no-restore
+    - name: Package
+      run: dotnet pack ./sdk/VecozoSdk.sln --configuration Release
