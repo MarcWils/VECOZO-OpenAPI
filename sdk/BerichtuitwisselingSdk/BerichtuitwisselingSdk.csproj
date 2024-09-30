@@ -9,15 +9,19 @@
     <LangVersion>11</LangVersion>
     <Authors>Marc Wils</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1</Version>
     <Description>VECOZO Berichtuitwisseling (by Marc Wils)</Description>
     <PackageTags>VECOZO Berichtuitwisseling OpenAPI</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/docs/release-notes.txt"))</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
   <ItemGroup>
     <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json" CodeGenerator="NSwagCSharp" Options="/JsonLibrary:SystemTextJson /GenerateClientInterfaces:true /GenerateOptionalPropertiesAsNullable:true /UseBaseUrl:false" ClassName="BerichtuitwisselingPushClient" Link="OpenAPIs\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json">
       <OutputPath>BerichtuitwisselingPushClient.sg.cs</OutputPath>
