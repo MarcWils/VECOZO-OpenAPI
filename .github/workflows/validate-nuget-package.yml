@@ -1,0 +1,35 @@
+name: Validate NuGet package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0     
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.0.0
+      with:
+        versionSpec: '6.x'
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v3.0.0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./sdk/VecozoSdk.sln
+    - name: Build
+      run: dotnet build ./sdk/VecozoSdk.sln --configuration Release --no-restore
+    - name: Package
+      run: dotnet pack ./sdk/BerichtuitwisselingSdk/BerichtuitwisselingSdk.csproj --configuration Release --output artifacts /p:Version='${{ env.GitVersion_SemVer }}'
