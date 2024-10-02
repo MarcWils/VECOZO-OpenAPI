@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace BerichtuitwisselingSdk.Sample
+namespace VspKoppelingSdk.Sample
 {
     internal static class Program
     {
@@ -28,7 +28,7 @@ namespace BerichtuitwisselingSdk.Sample
                 var certificate = new X509Certificate2("path-to-certificate.pfx", "pwd");
                 handler.ClientCertificates.Add(certificate);
                 return handler;
-            }); 
+            });
 
             var sp = services.BuildServiceProvider();
 
