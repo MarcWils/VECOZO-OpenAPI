@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BerichtuitwisselingSdk\BerichtuitwisselingSdk.csproj" />
+    <ProjectReference Include="..\VspKoppelingSdk\VspKoppelingSdk.csproj" />
   </ItemGroup>
 
 </Project>

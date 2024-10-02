@@ -1,4 +1,4 @@
-﻿using MarcWils.Vecozo.Berichtuitwisseling;
+﻿using MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Push.V1;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;

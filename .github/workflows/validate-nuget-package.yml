@@ -32,4 +32,4 @@ jobs:
     - name: Build
       run: dotnet build ./sdk/VecozoSdk.sln --configuration Release --no-restore
     - name: Package
-      run: dotnet pack ./sdk/BerichtuitwisselingSdk/BerichtuitwisselingSdk.csproj --configuration Release --output artifacts /p:Version='${{ env.GitVersion_SemVer }}'
+      run: dotnet pack ./sdk/VspKoppelingSdk/VspKoppelingSdk.csproj --configuration Release --output artifacts /p:Version='${{ env.GitVersion_SemVer }}'

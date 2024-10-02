@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>MarcWils.Vecozo.VspKoppelingSdk</AssemblyName>
+    <RootNamespace>MarcWils.Vecozo.VspKoppelingSdk</RootNamespace>
+    <Authors>Marc Wils</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>VECOZO VSP-Koppeling SDK (by Marc Wils)</Description>
+    <PackageTags>VECOZO VSP-Koppeling OpenAPI Berichtuitwisseling</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/docs/release-notes.txt"))</PackageReleaseNotes>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json" CodeGenerator="NSwagCSharp" Namespace="MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Push.V1" ClassName="BerichtuitwisselingPushClient" Link="OpenAPIs\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json">
+      <OutputPath>BerichtuitwisselingPushClient.sg.cs</OutputPath>
+      <Options>/JsonLibrary:SystemTextJson /GenerateClientInterfaces:true /GenerateExceptionClasses:false /GenerateOptionalPropertiesAsNullable:true /UseBaseUrl:false</Options>
+    </OpenApiReference>
+    <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtuitwisseling_REST_Pull_V1_-_1.0.0.json" CodeGenerator="NSwagCSharp" Namespace="MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Pull.V1" ClassName="BerichtuitwisselingPullClient" Link="OpenAPIs\VSP-Koppeling_Berichtuitwisseling_REST_Pull_V1_-_1.0.0.json">
+      <OutputPath>BerichtuitwisselingPullClient.sg.cs</OutputPath>
+      <Options>/JsonLibrary:SystemTextJson /GenerateClientInterfaces:true /GenerateOptionalPropertiesAsNullable:true /UseBaseUrl:false</Options>
+    </OpenApiReference>
+    <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtstatus_REST_Pull_V2_-_2.1.0.json" CodeGenerator="NSwagCSharp" Namespace="MarcWils.Vecozo.VspKoppelingSdk.Berichtstatus.Pull.V2" ClassName="BerichtstatusPullClient" Link="OpenAPIs\VSP-Koppeling_Berichtstatus_REST_Pull_V2_-_2.1.0.json">
+      <OutputPath>BerichtstatusPullClient.sg.cs</OutputPath>
+      <Options>/JsonLibrary:SystemTextJson /GenerateClientInterfaces:true /GenerateOptionalPropertiesAsNullable:true /UseBaseUrl:false</Options>
+    </OpenApiReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="14.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
+    <None Include="docs\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
