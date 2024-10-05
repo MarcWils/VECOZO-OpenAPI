@@ -29,3 +29,19 @@ branches:
     tracks-release-branches: false
     is-release-branch: false
     is-main-branch: true
+  release:
+    mode: ManualDeployment
+    label: beta
+    increment: Minor
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    track-merge-target: false
+    regex: ^releases?[/-](?<BranchName>.+)
+    source-branches:
+    - main
+    is-source-branch-for: []
+    tracks-release-branches: false
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
