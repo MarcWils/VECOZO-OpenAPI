@@ -4,8 +4,9 @@
     {
         static async Task Main()
         {
-            //await IndienenBerichtDemo.IndienenBerichtAsync();
+            await IndienenBerichtDemo.IndienenBerichtAsync();
             await PullenBerichtenDemo.PullBerichtenAsync();
+            await PullenBerichtstatusDemo.PullBerichtstatusAsync();
         }
     }
 }
