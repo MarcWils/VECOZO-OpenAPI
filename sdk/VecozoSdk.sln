@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerichtuitwisselingSdk", "BerichtuitwisselingSdk\BerichtuitwisselingSdk.csproj", "{B9290A01-12E2-44E2-9BDA-691676161D96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VspKoppelingSdk", "VspKoppelingSdk\VspKoppelingSdk.csproj", "{B9290A01-12E2-44E2-9BDA-691676161D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BerichtuitwisselingSdk.Sample", "BerichtuitwisselingSdk.Sample\BerichtuitwisselingSdk.Sample.csproj", "{3FB8303E-9445-4B2F-A8DC-043B051F2DFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VspKoppelingSdk.Sample", "VspKoppelingSdk.Sample\VspKoppelingSdk.Sample.csproj", "{3FB8303E-9445-4B2F-A8DC-043B051F2DFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

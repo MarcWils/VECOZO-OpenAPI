@@ -1,13 +1,13 @@
-﻿using MarcWils.Vecozo.Berichtuitwisseling;
+﻿using MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Push.V1;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace BerichtuitwisselingSdk.Sample
+namespace VspKoppelingSdk.Sample
 {
-    internal static class Program
+    static class IndienenBerichtDemo
     {
-        static async Task Main()
+        public static async Task IndienenBerichtAsync()
         {
             var services = new ServiceCollection();
 
@@ -28,7 +28,7 @@ namespace BerichtuitwisselingSdk.Sample
                 var certificate = new X509Certificate2("path-to-certificate.pfx", "pwd");
                 handler.ClientCertificates.Add(certificate);
                 return handler;
-            }); 
+            });
 
             var sp = services.BuildServiceProvider();
 
@@ -40,8 +40,14 @@ namespace BerichtuitwisselingSdk.Sample
                     Afzender = new Relatie
                     {
                         Rol = "Praktijk", // Praktijk, Zorgverlener, Instelling, Zorgverzekeraar, ...
-                        Code = "10000001s", // AGB-code, UZOVI, ...
+                        Code = "10000001", // AGB-code, UZOVI, ...
                     },
+                    Geadresseerden = [
+                        new Relatie {
+                            Rol = "Zorgverzekeraar",
+                            Code = "1000"
+                        }
+                    ],
                     Berichtstroom = new Berichtstroom
                     {
                         // Zie berichtuitwisselingsdocumentatie
@@ -54,10 +60,15 @@ namespace BerichtuitwisselingSdk.Sample
                 },
                 Referentiegegevens = new Referentiegegevens
                 {
+                    // Conversatie ID koppelt meerdere berichten logisch aan elkaar.
                     ConversatieId = Guid.NewGuid(),
+                    // Traceer ID is uniek voor elk bericht. Dit kan later gebruikt worden om de berichtstatus op te halen
+                    // of een retourbestand te correleren.
                     TraceerId = Guid.NewGuid()
                 }
-            }, new FileParameter(new MemoryStream(Encoding.UTF8.GetBytes("Hello world!"))));
+            },
+            // Data (payload) is het werkelijk uit te wissel bestand.
+            new FileParameter(data: new MemoryStream(Encoding.UTF8.GetBytes("Hello world!"))));
         }
     }
 }
