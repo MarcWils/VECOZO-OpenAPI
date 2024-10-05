@@ -4,7 +4,6 @@
 
 ```csharp
 var services = new ServiceCollection();
-
 services.AddHttpClient<BerichtuitwisselingPushClient>(httpClient =>
     /*
         * Endpoints:
@@ -25,7 +24,6 @@ services.AddHttpClient<BerichtuitwisselingPushClient>(httpClient =>
 });
 
 var sp = services.BuildServiceProvider();
-
 var pushClient = sp.GetRequiredService<BerichtuitwisselingPushClient>();
 await pushClient.PostBerichtAsync(new BerichtMetadata
 {
@@ -69,7 +67,6 @@ new FileParameter(data: new MemoryStream(Encoding.UTF8.GetBytes("Hello world!"))
 
 ```csharp
 var services = new ServiceCollection();
-
 services.AddHttpClient<BerichtuitwisselingPullClient>(httpClient =>
     /*
         * Endpoints:
@@ -90,7 +87,6 @@ services.AddHttpClient<BerichtuitwisselingPullClient>(httpClient =>
 });
 
 var sp = services.BuildServiceProvider();
-
 var pullClient = sp.GetRequiredService<BerichtuitwisselingPullClient>();
 var httpClient = sp.GetRequiredService<HttpClient>();
 
@@ -111,6 +107,39 @@ foreach (var bericht in berichten)
 }
 ```
 
+## VSP-Koppeling berichtstatus REST Pull V2 sample
+
+```csharp
+var services = new ServiceCollection();
+
+services.AddHttpClient<BerichtstatusPullClient>(httpClient =>
+    /*
+        * Endpoints:
+        * - TST: https://tst-api.vecozo.nl/tst/berichtenservice/berichtstatus/rest-pull/v2/
+        * - ACC: https://tst-api.vecozo.nl/acc/berichtenservice/berichtstatus/rest-pull/v2/
+        * - PRD: https://api.vecozo.nl/berichtenservice/berichtstatus/rest-pull/v2/
+        * */
+    httpClient.BaseAddress = new Uri("https://tst-api.vecozo.nl/tst/berichtenservice/berichtstatus/rest-pull/v2/")
+
+).ConfigurePrimaryHttpMessageHandler(sp =>
+{
+    var handler = new HttpClientHandler();
+
+    // Certicaat inladen van disk, certificate store, KeyVault, o.i.d.
+    var certificate = new X509Certificate2("path-to-certificate.pfx", "pwd");
+    handler.ClientCertificates.Add(certificate);
+    return handler;
+});
+
+var sp = services.BuildServiceProvider();
+var berichtstatusPullClient = sp.GetRequiredService<BerichtstatusPullClient>();
+
+// De berichstatus kan opgehaald worden o.b.v. traceer ID of conversatie ID.
+var berichtstatussen = await berichtstatusPullClient.ZoekBerichtstatussenAsync(traceerId: Guid.NewGuid(), null);
+
+// Ook de de berichtstatus van de gekoppelde berichten (bv. retourberichten) worden teruggekoppeld.
+// Als het bericht is afgekeurd, worden ook de bijhorende meldingen teruggekoppeld.
+```
 
 ## Disclaimer
 This is no official VECOZO NuGet package.
