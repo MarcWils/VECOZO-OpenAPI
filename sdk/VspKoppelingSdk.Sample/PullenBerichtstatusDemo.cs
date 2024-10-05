@@ -1,11 +1,6 @@
 ﻿using MarcWils.Vecozo.VspKoppelingSdk.Berichtstatus.Pull.V2;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VspKoppelingSdk.Sample
 {
@@ -14,7 +9,6 @@ namespace VspKoppelingSdk.Sample
         public static async Task PullBerichtstatusAsync()
         {
             var services = new ServiceCollection();
-
             services.AddHttpClient<BerichtstatusPullClient>(httpClient =>
                 /*
                  * Endpoints:
@@ -35,11 +29,9 @@ namespace VspKoppelingSdk.Sample
             });
 
             var sp = services.BuildServiceProvider();
-
             var berichtstatusPullClient = sp.GetRequiredService<BerichtstatusPullClient>();
 
             // De berichstatus kan opgehaald worden o.b.v. traceer ID of conversatie ID.
-
             var berichtstatussen = await berichtstatusPullClient.ZoekBerichtstatussenAsync(traceerId: Guid.NewGuid(), null);
 
             // Ook de de berichtstatus van de gekoppelde berichten (bv. retourberichten) worden teruggekoppeld.

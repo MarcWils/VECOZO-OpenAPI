@@ -4,7 +4,6 @@
 
 ```csharp
 var services = new ServiceCollection();
-
 services.AddHttpClient<BerichtuitwisselingPushClient>(httpClient =>
     /*
         * Endpoints:
@@ -25,7 +24,6 @@ services.AddHttpClient<BerichtuitwisselingPushClient>(httpClient =>
 });
 
 var sp = services.BuildServiceProvider();
-
 var pushClient = sp.GetRequiredService<BerichtuitwisselingPushClient>();
 await pushClient.PostBerichtAsync(new BerichtMetadata
 {
@@ -69,7 +67,6 @@ new FileParameter(data: new MemoryStream(Encoding.UTF8.GetBytes("Hello world!"))
 
 ```csharp
 var services = new ServiceCollection();
-
 services.AddHttpClient<BerichtuitwisselingPullClient>(httpClient =>
     /*
         * Endpoints:
@@ -90,7 +87,6 @@ services.AddHttpClient<BerichtuitwisselingPullClient>(httpClient =>
 });
 
 var sp = services.BuildServiceProvider();
-
 var pullClient = sp.GetRequiredService<BerichtuitwisselingPullClient>();
 var httpClient = sp.GetRequiredService<HttpClient>();
 
@@ -136,11 +132,9 @@ services.AddHttpClient<BerichtstatusPullClient>(httpClient =>
 });
 
 var sp = services.BuildServiceProvider();
-
 var berichtstatusPullClient = sp.GetRequiredService<BerichtstatusPullClient>();
 
 // De berichstatus kan opgehaald worden o.b.v. traceer ID of conversatie ID.
-
 var berichtstatussen = await berichtstatusPullClient.ZoekBerichtstatussenAsync(traceerId: Guid.NewGuid(), null);
 
 // Ook de de berichtstatus van de gekoppelde berichten (bv. retourberichten) worden teruggekoppeld.

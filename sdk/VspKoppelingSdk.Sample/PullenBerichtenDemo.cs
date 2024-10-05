@@ -9,7 +9,6 @@ namespace VspKoppelingSdk.Sample
         public static async Task PullBerichtenAsync()
         {
             var services = new ServiceCollection();
-
             services.AddHttpClient<BerichtuitwisselingPullClient>(httpClient =>
                 /*
                  * Endpoints:
@@ -30,7 +29,6 @@ namespace VspKoppelingSdk.Sample
             });
 
             var sp = services.BuildServiceProvider();
-
             var pullClient = sp.GetRequiredService<BerichtuitwisselingPullClient>();
             var httpClient = sp.GetRequiredService<HttpClient>();
 

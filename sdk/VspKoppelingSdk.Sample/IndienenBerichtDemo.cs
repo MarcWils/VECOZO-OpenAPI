@@ -10,7 +10,6 @@ namespace VspKoppelingSdk.Sample
         public static async Task IndienenBerichtAsync()
         {
             var services = new ServiceCollection();
-
             services.AddHttpClient<BerichtuitwisselingPushClient>(httpClient =>
                 /*
                  * Endpoints:
@@ -31,7 +30,6 @@ namespace VspKoppelingSdk.Sample
             });
 
             var sp = services.BuildServiceProvider();
-
             var pushClient = sp.GetRequiredService<BerichtuitwisselingPushClient>();
             await pushClient.PostBerichtAsync(new BerichtMetadata
             {
