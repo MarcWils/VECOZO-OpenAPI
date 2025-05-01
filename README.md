@@ -10,4 +10,4 @@ Check it out: [VSP-Koppeling SDK](https://github.com/MarcWils/VECOZO-OpenAPI/tre
 
 ## ✨ Explore the API's ✨
 
-➡️ **https://marcwils.github.io/VECOZO-OpenAPI/**
+➡️ **https://vecozo-api.marcwils.be.eu.org/**
