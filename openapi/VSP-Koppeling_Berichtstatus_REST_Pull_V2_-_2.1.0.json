@@ -3,7 +3,7 @@
   "info": {
     "title": "VSP-Koppeling Berichtstatus REST Pull V2",
     "description": "OpenAPI Koppelvlak specificatie voor het opvragen van de huidige berichtstatus. LET OP! Het is alleen mogelijk de webservice te benaderen indien er een certificaat wordt meegestuurd.",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
     "contact": {
       "name": "VECOZO",
@@ -85,7 +85,6 @@
     "schemas": {
       "Berichtstatus": {
         "enum": [
-          "Onbekend",
           "Ontvangen",
           "DeelsOntvangen",
           "DeelberichtAanleveringAfgekeurd",
