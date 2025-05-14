@@ -1,5 +1,9 @@
 name: Pack & release NuGet package
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   workflow_dispatch:
 
