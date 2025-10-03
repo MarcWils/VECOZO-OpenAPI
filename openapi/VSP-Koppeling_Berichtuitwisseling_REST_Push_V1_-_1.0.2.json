@@ -2,11 +2,11 @@
   "openapi": "3.0.1",
   "info": {
     "title": "VSP-Koppeling REST Push",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "OpenAPI Koppelvlak specificatie t.b.v. het pushen van berichten. LET OP! Het is alleen mogelijk de API te benaderen indien er een geldig VECOZO systeemcertificaat wordt meegestuurd.",
     "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
     "contact": {
-      "name": "VECOZOs",
+      "name": "VECOZO",
       "url": "https://www.vecozo.nl",
       "email": "support@vecozo.nl"
     }
@@ -33,7 +33,6 @@
         ],
         "summary": "Verstuur een bericht naar de ontvanger.",
         "operationId": "PostBericht",
-
         "requestBody": {
           "description": "Bericht, bestaande uit metadata en payload.",
           "required": true,
@@ -58,6 +57,9 @@
               "encoding": {
                 "berichtMetadata": {
                   "contentType": "application/json"
+                },
+                "payload": {
+                  "contentType": "application/octet-stream"
                 }
               }
             }
@@ -93,30 +95,6 @@
   },
   "components": {
     "schemas": {
-      "BerichtMetadata": {
-        "type": "object",
-        "required": [
-          "routeringgegevens",
-          "referentiegegevens"
-        ],
-        "properties": {
-          "routeringgegevens": {
-            "$ref": "#/components/schemas/Routeringgegevens"
-          },
-          "referentiegegevens": {
-            "$ref": "#/components/schemas/Referentiegegevens"
-          },
-          "verwerkingscontext": {
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 100,
-            "items": {
-              "$ref": "#/components/schemas/SleutelWaardePaar"
-            }
-          }
-        },
-        "additionalProperties": false
-      },
       "Relatie": {
         "type": "object",
         "required": [
@@ -251,6 +229,30 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 250
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "BerichtMetadata": {
+        "type": "object",
+        "required": [
+          "routeringgegevens",
+          "referentiegegevens"
+        ],
+        "properties": {
+          "routeringgegevens": {
+            "$ref": "#/components/schemas/Routeringgegevens"
+          },
+          "referentiegegevens": {
+            "$ref": "#/components/schemas/Referentiegegevens"
+          },
+          "verwerkingscontext": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/SleutelWaardePaar"
             }
           }
         },
