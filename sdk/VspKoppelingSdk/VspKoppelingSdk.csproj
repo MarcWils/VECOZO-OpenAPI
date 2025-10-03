@@ -22,7 +22,7 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
   <ItemGroup>
-    <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json" CodeGenerator="NSwagCSharp" Namespace="MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Push.V1" ClassName="BerichtuitwisselingPushClient" Link="OpenAPIs\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.0.json">
+    <OpenApiReference Include="..\..\openapi\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.2.json" CodeGenerator="NSwagCSharp" Namespace="MarcWils.Vecozo.VspKoppelingSdk.Berichtuitwisseling.Push.V1" ClassName="BerichtuitwisselingPushClient" Link="OpenAPIs\VSP-Koppeling_Berichtuitwisseling_REST_Push_V1_-_1.0.2.json">
       <OutputPath>BerichtuitwisselingPushClient.sg.cs</OutputPath>
       <Options>/JsonLibrary:SystemTextJson /GenerateClientInterfaces:true /GenerateExceptionClasses:false /GenerateOptionalPropertiesAsNullable:true /UseBaseUrl:false</Options>
     </OpenApiReference>
@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="NSwag.ApiDescription.Client" Version="14.4.0">
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="14.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
