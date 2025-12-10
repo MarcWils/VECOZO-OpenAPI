@@ -3,8 +3,7 @@
   "info": {
     "title": "VSP-Koppeling REST Pull",
     "description": "OpenAPI Koppelvlak specificatie t.b.v het pullen van berichten. LET OP! Het is alleen mogelijk de API te benaderen indien er een certificaat wordt meegestuurd.",
-    "version": "1.0.0",
-    "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
+    "version": "1.0.1",
     "contact": {
       "name": "VECOZO",
       "url": "https://www.vecozo.nl",

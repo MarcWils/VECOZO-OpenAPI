@@ -1,11 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "x-deprecated": "2025-12-28",
-    "x-sunset": "2027-01-01",
-    "title": "VSP-Koppeling Berichtstatus REST Pull V2",
-    "description": "Deprecated: gebruik 'VSP-Koppeling Berichtstatus REST Pull V3'. OpenAPI Koppelvlak specificatie voor het opvragen van de huidige berichtstatus. LET OP! Het is alleen mogelijk de webservice te benaderen indien er een certificaat wordt meegestuurd.",
-    "version": "2.2.1",
+    "title": "VSP-Koppeling Berichtstatus REST Pull V3",
+    "description": "OpenAPI Koppelvlak specificatie voor het opvragen van de huidige berichtstatus. LET OP! Het is alleen mogelijk de webservice te benaderen indien er een certificaat wordt meegestuurd.",
+    "version": "3.0.0",
     "contact": {
       "name": "VECOZO",
       "url": "https://www.vecozo.nl",
@@ -14,22 +12,21 @@
   },
   "servers": [
     {
-      "url": "https://api.vecozo.nl/berichtenservice/berichtstatus/rest-pull/v2",
+      "url": "https://api.vecozo.nl/berichtenservice/berichtstatus/rest-pull/v3",
       "description": "Productie"
     },
     {
-      "url": "https://tst-api.vecozo.nl/acc/berichtenservice/berichtstatus/rest-pull/v2",
+      "url": "https://tst-api.vecozo.nl/acc/berichtenservice/berichtstatus/rest-pull/v3",
       "description": "Acceptatie"
     },
     {
-      "url": "https://tst-api.vecozo.nl/tst/berichtenservice/berichtstatus/rest-pull/v2",
+      "url": "https://tst-api.vecozo.nl/tst/berichtenservice/berichtstatus/rest-pull/v3",
       "description": "Test"
     }
   ],
   "paths": {
     "/berichtstatussen": {
       "get": {
-        "deprecated": true,
         "tags": [
           "Berichtstatus"
         ],
@@ -62,7 +59,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "maxItems": 250,
+                  "maxItems":  250,
                   "items": {
                     "$ref": "#/components/schemas/BerichtstatusGegevens"
                   }
@@ -94,8 +91,10 @@
           "WordtVerwerkt",
           "AfgekeurdDoorDienst",
           "VerwerkingVoltooid",
-          "Aangeboden",
-          "Bezorgd"
+          "WordtAangeboden",
+          "Bezorgd",
+          "AanbiedenMislukt",
+          "BezorgingAfgebroken"
         ],
         "type": "string",
         "description": "De status van een bericht."
@@ -122,7 +121,7 @@
           "berichtstatusGewijzigdOp": {
             "type": "string",
             "format": "date-time",
-            "example": "2023-08-18T16:58:44.0867+02:00"
+            "example": "2025-11-24T16:58:44.0867+01:00"
           },
           "meldingen": {
             "type": "array",
@@ -135,7 +134,7 @@
           "berichtOntvangenOp": {
             "type": "string",
             "format": "date-time",
-            "example": "2023-08-18T16:58:44.0867+02:00"
+            "example": "2025-11-24T16:58:44.0867+01:00"
           }
         },
         "additionalProperties": false,
