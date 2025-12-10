@@ -2,9 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "VSP-Koppeling REST Push",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "OpenAPI Koppelvlak specificatie t.b.v. het pushen van berichten. LET OP! Het is alleen mogelijk de API te benaderen indien er een geldig VECOZO systeemcertificaat wordt meegestuurd.",
-    "termsOfService": "https://www.vecozo.nl/algemene-voorwaarden/",
     "contact": {
       "name": "VECOZO",
       "url": "https://www.vecozo.nl",
