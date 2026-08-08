@@ -2,7 +2,7 @@
   "name": "vecozo-api",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/cli": "2.43.2"
+    "@redocly/cli": "2.44.1"
   },
   "private": true,
   "scripts": {
